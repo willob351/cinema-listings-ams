@@ -1,0 +1,678 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: #ffffff;
+    opacity: 1;
+    background-image: linear-gradient(135deg, #828282 25%, transparent 25%), linear-gradient(225deg, #828282 25%, transparent 25%), linear-gradient(45deg, #828282 25%, transparent 25%), linear-gradient(315deg, #828282 25%, #ffffff 25%);
+    background-position: 15px 0, 15px 0, 0 0, 0 0;
+    background-size: 15px 15px;
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding: 20px;
+    color: black;
+}
+
+header {
+    text-align: center;
+    color: black;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border: 2px solid black;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+header p {
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 8px;
+    background: transparent;
+    padding: 4px;
+}
+
+.toggle-btn {
+    background: white;
+    border: 2px solid black;
+    padding: 8px 16px;
+    border-radius: 0;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', serif;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toggle-btn.active {
+    background: black;
+    color: white;
+}
+
+.toggle-btn:hover:not(.active) {
+    background: #f5f5f5;
+}
+
+button {
+    background: white;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 0;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', serif;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: rgb(100, 99, 99);
+    color: white;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+select {
+    padding: 10px 20px;
+    border-radius: 0;
+    border: 2px solid black;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: white;
+    cursor: pointer;
+}
+
+.cinema-filter-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.time-filter-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 0;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 180px;
+    justify-content: space-between;
+}
+
+.dropdown-arrow {
+    font-size: 12px;
+    transition: transform 0.2s;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 2px solid black;
+    margin-top: 4px;
+    min-width: 220px;
+    z-index: 1000;
+    padding: 8px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.cinema-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', serif;
+    user-select: none;
+    padding: 8px;
+    transition: background 0.2s;
+}
+
+.cinema-checkbox:hover {
+    background: #6e6e6e64;
+}
+
+.cinema-checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    position: relative;
+    background: white;
+    border: 2px solid #828282ae;
+    border-radius: 2px;
+    transform: rotate(45deg);
+}
+
+.cinema-checkbox input[type="checkbox"]:checked {
+    background: #828282 25%;
+    border-color: #828282 25%;
+}
+
+.cinema-checkbox input[type="checkbox"]:indeterminate {
+    background: #666;
+    border-color: #666;
+}
+
+.cinema-checkbox input[type="checkbox"]:indeterminate::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 2px;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+.cinema-checkbox input[type="checkbox"]:checked::before {
+    display: none;
+}
+
+.cinema-checkbox span {
+    font-style: normal;
+    transform: translateY(-1px);
+}
+
+.cinema-checkbox.parent-checkbox {
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.cinema-group {
+    margin-left: 20px;
+    margin-bottom: 4px;
+    border-left: 2px dotted #999;
+    padding-left: 8px;
+}
+
+.cinema-checkbox.child-checkbox {
+    padding: 6px 8px;
+}
+
+.cinema-checkbox.all-cinemas {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: #ddd;
+    margin: 4px 0;
+}
+
+.time-option {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', serif;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.time-option:hover {
+    background: #6e6e6e64;
+}
+
+footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+    background: #f5f5f596;
+}
+footer a {
+    color: #4e4e4e;
+    text-decoration: wavy underline;
+}
+footer a:hover {
+    color: #e83299;
+    text-decoration: wavy underline;
+}
+
+footer p {
+    margin: 0;
+}
+
+.loading {
+    text-align: center;
+    color: black;
+    font-size: 1.2rem;
+    padding: 40px;
+    font-style: italic;
+}
+
+.error {
+    background: white;
+    border: 2px solid black;
+    color: black;
+    padding: 15px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.movie-card {
+    background: white;
+    border: 2px solid black;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    transition: transform 0.2s;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.movie-card:hover {
+    transform: translateX(3px) translateY(-3px);
+    box-shadow: -3px 3px 0 black;
+}
+
+.movie-poster-container {
+    flex-shrink: 0;
+}
+
+.movie-poster {
+    width: 120px;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd;
+}
+
+.movie-content {
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+}
+
+.movie-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.movie-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 0;
+    color: black;
+    flex: 1;
+}
+
+.movie-cinema {
+    color: black;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.cinema-section {
+    margin-bottom: 12px;
+}
+
+.cinema-section:last-child {
+    margin-bottom: 0;
+}
+
+.cinema-name {
+    color: black;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 6px;
+}
+
+.showtimes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    align-items: center;
+}
+
+.showtimes-hidden {
+    display: contents;
+}
+
+.showtime {
+    background: white;
+    border: 1px solid black;
+    padding: 6px 12px;
+    border-radius: 0;
+    font-size: 0.9rem;
+}
+
+.showtime-toggle {
+    color: blue;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-style: italic;
+    padding: 6px 12px;
+}
+
+.showtime-toggle:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.no-showtimes {
+    color: #666;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.movie-link {
+    display: inline-block;
+    margin: 0;
+    color: blue;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.movie-link:visited {
+    color: blue;
+}
+
+.movie-link:hover {
+    color: black;
+}
+
+.movie-links {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+.empty-state {
+    text-align: center;
+    color: black;
+    padding: 60px 20px;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.day-section {
+    background: white;
+    border: 2px solid black;
+    border-radius: 0;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: none;
+}
+
+.day-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-style: italic;
+    color: black;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.day-header:hover {
+    background: #f5f5f5;
+}
+
+.day-header .toggle-icon {
+    display: inline-block;
+    width: 20px;
+    font-style: normal;
+    transition: transform 0.2s;
+}
+
+.day-listings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-height: 5000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 1;
+}
+
+.day-listings.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+}
+
+.day-listing-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 0;
+    transition: transform 0.2s;
+    align-items: center;
+}
+
+.day-listing-item:hover {
+    transform: translateX(2px) translateY(-2px);
+    box-shadow: -2px 2px 0 black;
+}
+
+.day-listing-poster {
+    flex-shrink: 0;
+}
+
+.day-listing-poster img {
+    width: 50px;
+    height: auto;
+    display: block;
+    border: 1px solid #ddd;
+}
+
+.day-listing-time {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black;
+    min-width: 70px;
+    flex-shrink: 0;
+}
+
+.day-listing-info {
+    flex: 1;
+}
+
+.day-listing-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    font-style: italic;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.day-listing-cinema {
+    color: black;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.also-showing {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.day-listing-link {
+    color: blue;
+    text-decoration: none;
+    font-style: italic;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.day-listing-link:visited {
+    color: blue;
+}
+
+.day-listing-link:hover {
+    color: black;
+}
+
+.day-listing-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .listings-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .day-listings {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .day-listing-item {
+        padding: 10px;
+        gap: 8px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    
+    .day-listing-poster {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    
+    .day-listing-time {
+        font-size: 1rem;
+        min-width: auto;
+        grid-row: 1;
+        grid-column: 2;
+        align-self: center;
+    }
+    
+    .day-listing-info {
+        grid-row: 2;
+        grid-column: 1 / -1;
+    }
+    
+    .day-listing-links {
+        grid-row: 3;
+        grid-column: 1 / -1;
+    }
+    
+    .day-listing-title {
+        font-size: 0.85rem;
+    }
+    
+    .day-listing-cinema {
+        font-size: 0.75rem;
+    }
+    
+    .day-listing-link {
+        font-size: 0.75rem;
+    }
+    
+    .also-showing {
+        font-size: 0.7rem;
+    }
+    
+    .day-listing-poster img {
+        width: 60px;
+    }
+    
+    .movie-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .movie-title {
+        margin-bottom: 0;
+    }
+    
+    .movie-links {
+        align-items: flex-start;
+    }
+    
+    .movie-poster {
+        width: 100%;
+        max-width: 100px;
+    }
+}

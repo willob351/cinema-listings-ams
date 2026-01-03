@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Listings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Cinema Listings</h1>
+        <p>film times for the week ahead</p>
+    </header>
+
+    <main>
+        <div class="controls">
+            <button id="refreshBtn" onclick="loadListings()">Refresh Listings</button>
+            <div class="cinema-filter-dropdown">
+                <button class="dropdown-toggle" id="cinemaDropdownToggle" type="button">
+                    <span id="cinemaDropdownLabel">Cinemas</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-menu" id="cinemaDropdownMenu">
+                    <label class="cinema-checkbox all-cinemas">
+                        <input type="checkbox" id="allCinemasCheckbox">
+                        <span><strong>All Cinemas</strong></span>
+                    </label>
+                    <div class="dropdown-divider"></div>
+                    
+                    <label class="cinema-checkbox parent-checkbox">
+                        <input type="checkbox" id="westCheckbox" data-children="LAB111,Filmhallen">
+                        <span><strong>West</strong></span>
+                    </label>
+                    <div class="cinema-group">
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="LAB111" data-parent="westCheckbox" checked>
+                            <span>LAB111</span>
+                        </label>
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="Filmhallen" data-parent="westCheckbox" checked>
+                            <span>Filmhallen</span>
+                        </label>
+                    </div>
+                    
+                    <label class="cinema-checkbox parent-checkbox">
+                        <input type="checkbox" id="centraalCheckbox" data-children="De Uitkijk,Kriterion,Pathé Tuschinski">
+                        <span><strong>Centraal</strong></span>
+                    </label>
+                    <div class="cinema-group">
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="De Uitkijk" data-parent="centraalCheckbox">
+                            <span>De Uitkijk</span>
+                        </label>
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="Kriterion" data-parent="centraalCheckbox">
+                            <span>Kriterion</span>
+                        </label>
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="Pathé Tuschinski" data-parent="centraalCheckbox">
+                            <span>Pathé Tuschinski</span>
+                        </label>
+                    </div>
+                    
+                    <label class="cinema-checkbox parent-checkbox">
+                        <input type="checkbox" id="oostCheckbox" data-children="Studio K">
+                        <span><strong>Oost</strong></span>
+                    </label>
+                    <div class="cinema-group">
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="Studio K" data-parent="oostCheckbox">
+                            <span>Studio K</span>
+                        </label>
+                    </div>
+                    
+                    <label class="cinema-checkbox parent-checkbox">
+                        <input type="checkbox" id="noordCheckbox" data-children="EYE,FC Hyena">
+                        <span><strong>Noord</strong></span>
+                    </label>
+                    <div class="cinema-group">
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="EYE" data-parent="noordCheckbox">
+                            <span>EYE</span>
+                        </label>
+                        <label class="cinema-checkbox child-checkbox">
+                            <input type="checkbox" name="cinema" value="FC Hyena" data-parent="noordCheckbox">
+                            <span>FC Hyena</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="time-filter-dropdown">
+                <button class="dropdown-toggle" id="timeDropdownToggle" type="button">
+                    <span id="timeDropdownLabel">All Day</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-menu" id="timeDropdownMenu">
+                    <div class="time-option" data-value="all">All Day</div>
+                    <div class="time-option" data-value="morning">Morning (before 12pm)</div>
+                    <div class="time-option" data-value="afternoon">Afternoon (12pm - 4pm)</div>
+                    <div class="time-option" data-value="evening">Evening (4pm onwards)</div>
+                </div>
+            </div>
+            <div class="view-toggle">
+                <button id="byMovieBtn" class="toggle-btn " onclick="switchView('movie')">By Movie</button>
+                <button id="byDayBtn" class="toggle-btn active" onclick="switchView('day')">By Day</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Loading listings...</div>
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <div id="listings" class="listings-grid"></div>
+    </main>
+
+    <footer>
+        <p>made with ♡ by <a href="https://katbots.neocities.org" target="_blank"> willow</a>᯽ </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
