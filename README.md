@@ -1,13 +1,15 @@
 # Cinema Listings Aggregator
 
-A Python Flask web application that aggregates cinema listings from multiple websites and displays them in a unified interface.
+A Python Flask web application that takes cinema listings and displays them in a nicer way, with just the cinemas relevant to me :)
+Here it is: https://cinema-listings-ams.onrender.com/
 
 ## Features
 
-- Scrapes movie listings from filmladder.nl (LAB111 Amsterdam)
-- Clean, modern web interface
-- Real-time data fetching
-- Filter by cinema
+- Scrapes movie listings from filmladder.nl once a day, stores info & imgs in cache
+- Prettier interface
+- Filter by cinema, by time of showing
+- View by day or by movie
+- Includes posters and link to the film's letterboxd page for convenience of cover-judging and review checking
 - Responsive design
 
 ## Installation
@@ -59,6 +61,9 @@ To add a new cinema source:
 2. Add the scraper call to the API endpoints in `app.py`
 3. Update the cinema filter in `templates/index.html`
 
+## Manual override of cache
+To force fresh data, you can delete the cache file: `rm cache/listings_cache.json`
+
 ## Legal Notice
 
-This application scrapes publicly available data. Please respect the terms of service of the websites being scraped and implement appropriate rate limiting.
+This application scrapes publicly available data. Please respect the terms of service of the websites being scraped and implement appropriate rate limiting. 
