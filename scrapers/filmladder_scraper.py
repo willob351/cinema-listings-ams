@@ -21,7 +21,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -118,7 +118,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -212,7 +212,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -306,7 +306,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -400,7 +400,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -494,7 +494,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -588,7 +588,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
@@ -682,7 +682,7 @@ class FilmladderScraper:
             response = self.session.get(url, timeout=10)
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'lxml')
+            soup = BeautifulSoup(response.content, 'html.parser')
             listings = []
             
             # First, build a map of movie titles to their poster images
