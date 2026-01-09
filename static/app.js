@@ -9,6 +9,24 @@ function getLetterboxdUrl(title) {
     return `https://letterboxd.com/search/films/${cleanTitle}/`;
 }
 
+// Helper function to generate dynamic day order based on current date
+function getDynamicDayOrder() {
+    const dutchDays = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+    const today = new Date();
+    const todayIndex = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    
+    // Start with 'vandaag' (today) and 'morgen' (tomorrow)
+    const dayOrder = ['vandaag', 'morgen'];
+    
+    // Add the next 7 days in order starting from day after tomorrow
+    for (let i = 2; i < 9; i++) {
+        const dayIndex = (todayIndex + i) % 7;
+        dayOrder.push(dutchDays[dayIndex]);
+    }
+    
+    return dayOrder;
+}
+
 // Load listings on page load
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize current time filter
@@ -236,11 +254,11 @@ function displayListingsByDay(byDayData) {
         return;
     }
     
-    // Define day order
-    const dayOrder = ['vandaag', 'morgen', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'];
+    // Create dynamic day order based on current date
+    const dayOrder = getDynamicDayOrder();
     const sortedDays = Object.keys(byDayData).sort((a, b) => {
-        const aIndex = dayOrder.indexOf(a);
-        const bIndex = dayOrder.indexOf(b);
+        const aIndex = dayOrder.indexOf(a.toLowerCase());
+        const bIndex = dayOrder.indexOf(b.toLowerCase());
         if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
         if (aIndex === -1) return 1;
         if (bIndex === -1) return -1;
